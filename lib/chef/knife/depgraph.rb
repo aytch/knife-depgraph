@@ -17,13 +17,15 @@
 require 'chef/knife'
 require 'chef/run_list/run_list_expansion'
 
+raise 'wut'
+
 class Chef
   class Knife
-    class Solve < Knife
+    class Depgraph < Knife
       deps do
       end
 
-      banner 'knife solve COOKBOOK...'
+      banner 'knife depgraph COOKBOOK...'
 
       option :node,
         short: '-n',

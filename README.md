@@ -1,17 +1,9 @@
-knife-solve
+knife-depgraph
 ===========
 
-knife-solve is a little knife plugin to see the chef-server version solver
-solution for a given set of cookbooks.
+knife-depgraph is a knife plugin to display the dependency information
+for all the of the cookbooks used by a given node.
 
-```bash
-$ knife solve -E production apache2
-Solving [apache2] in production environment
-apache2 1.9.6
-iptables 0.12.0
-logrotate 1.5.0
-pacman 1.1.1
-```
 
 Installation
 ------------
@@ -19,26 +11,16 @@ Installation
 As with all knife plugins, just install the gem:
 
 ```
-gem install knife-solve
+gem install knife-depgraph
 ```
 
-Usage
------
+If using ChefDK, run `chef gem` instead of `gem`.
 
-To solve a simple list of cookbooks:
+Acknowledgements
+----------------
 
-```
-knife solve apache2 mysql
-```
+knife-depgraph is based on
+[knife-solve](https://github.com/coderanger/knife-solve) by
+[Noah Kantrowitz](http://coderanger.net/).
 
-You can also solve a normal run list:
-
-```
-knife solve 'role[www]'
-```
-
-Or use an existing node's run list:
-
-```
-knife solve -n www01
-```
+Thanks Noah!

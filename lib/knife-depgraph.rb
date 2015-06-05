@@ -14,5 +14,5 @@
 # limitations under the License.
 #
 
-module KnifeSolve
+module KnifeDepgraph
 end

@@ -1,5 +1,6 @@
 #
 # Copyright 2014, Noah Kantrowitz
+# Copyright 2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +15,6 @@
 # limitations under the License.
 #
 
-module KnifeSolve
-  VERSION = '1.0.1'
+module KnifeDepgraph
+  VERSION = '1.0.0'
 end

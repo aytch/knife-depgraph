@@ -15,22 +15,22 @@
 #
 
 $:.unshift(File.dirname(__FILE__) + '/lib')
-require 'knife-solve/version'
+require 'knife-depgraph/version'
 
 Gem::Specification.new do |s|
-  s.name = 'knife-solve'
-  s.version = KnifeSolve::VERSION
+  s.name = 'knife-depgraph'
+  s.version = KnifeDepgraph::VERSION
   s.license = 'Apache 2.0'
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ['LICENSE']
-  s.summary = 'A knife plugin to display cookbook version solutions.'
+  s.summary = 'A knife plugin to display dependency data for cookbooks used by a node'
   s.description = s.summary
-  s.author = 'Noah Kantrowitz'
-  s.email = 'noah@coderanger.net'
-  s.homepage = 'https://github.com/coderanger/knife-solve'
+  s.authors = ['Noah Kantrowitz', 'Daniel DeLeo']
+  s.email = 'dan@chef.io'
+  s.homepage = 'https://github.com/danielsdeleo/knife-depgraph'
 
-  s.add_dependency 'chef'
+  s.add_development_dependency 'chef'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
 
