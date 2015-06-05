@@ -16,6 +16,51 @@ gem install knife-depgraph
 
 If using ChefDK, run `chef gem` instead of `gem`.
 
+Usage:
+------
+
+```
+knife depgraph NODE
+```
+
+Produces output like:
+
+```json
+{
+  "7-zip": {
+    "version": "1.0.2",
+    "deps": {
+      "windows": ">= 1.2.2"
+    }
+  },
+  "annoyances": {
+    "version": "0.1.3",
+    "deps": {
+
+    }
+  },
+  "apache2": {
+    "version": "1.0.1",
+    "deps": {
+
+    }
+  },
+  "apt": {
+    "version": "2.3.10",
+    "deps": {
+
+    }
+  },
+```
+
+Capture it to a file with standard shell redirection:
+
+```
+bundle exec knife depgraph NODE > dep_graph.json
+```
+
+Diagnostic messages will be printed to stderr.
+
 Acknowledgements
 ----------------
 

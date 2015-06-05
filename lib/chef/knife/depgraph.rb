@@ -17,15 +17,13 @@
 require 'chef/knife'
 require 'chef/run_list/run_list_expansion'
 
-raise 'wut'
-
 class Chef
   class Knife
     class Depgraph < Knife
       deps do
       end
 
-      banner 'knife depgraph COOKBOOK...'
+      banner 'knife depgraph NODE'
 
       option :node,
         short: '-n',
@@ -33,13 +31,17 @@ class Chef
         description: 'Use the run list from a given node'
 
       def run
-        environment = config[:environment]
-        cookbooks = name_args
-        if config[:node]
-          node = Chef::Node.load(config[:node])
-          environment ||= node.chef_environment
-          cookbooks += node.run_list.run_list_items
+        unless name_args.size == 1
+          ui.err(opt_parser)
+          exit 1
         end
+
+        node_name = name_args.first
+
+        node = Chef::Node.load(node_name)
+        environment ||= node.chef_environment
+        cookbooks = node.run_list.run_list_items
+
         environment ||= '_default'
         cookbooks = cookbooks.map do |arg|
           arg = arg.to_s
@@ -55,11 +57,20 @@ class Chef
           # I don't think this is strictly speaking required, but do it anyway
           arg.split('@').first.split('::').first
         end
-        ui.info("Solving [#{cookbooks.join(', ')}] in #{environment} environment")
+        ui.err("Solving [#{cookbooks.join(', ')}] in #{environment} environment")
         solution = solve_cookbooks(environment, cookbooks)
+
+        dep_graph = {}
+
         solution.sort.each do |name, cb|
-          msg("#{name} #{cb.version}")
+          dep_graph[name] = {
+            "version" => cb.version,
+            "deps" => cb.metadata.dependencies
+          }
         end
+
+        ui.msg( Chef::JSONCompat.to_json_pretty(dep_graph) )
+
       end
 
       def solve_cookbooks(environment, cookbooks)
