@@ -28,4 +28,3 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
 end
 
-gem_spec = eval(File.read('knife-solve.gemspec'))
