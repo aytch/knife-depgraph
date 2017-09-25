@@ -64,8 +64,8 @@ class Chef
 
         solution.sort.each do |name, cb|
           dep_graph[name] = {
-            "version" => cb.version,
-            "deps" => cb.metadata.dependencies
+            "version" => cb['version'],
+            "deps" => cb['metadata']['dependencies']
           }
         end
 
